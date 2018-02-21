@@ -1,3 +1,4 @@
+import axios from 'axios'
 const initState={
 	flag: 'failed'
 }
@@ -10,6 +11,13 @@ export function loginReducer(state, action){
 		default: return initState;
 	}
 }
-export function login(pass){
-	return {type:pass==true?'Login_Success':'Login_Failed'}
+export function login({id,pwd}){
+	return dispatch=>axios.get('user.json')
+	.then(res=>{
+		//console.log(id+pwd)
+		if(res.data.find(a=>{return a.id===id&&a.pwd===pwd})===undefined) 
+			return dispatch({type:'Login_Failed'})
+		else return dispatch({type:'Login_Success'})
+	})
+	
 }

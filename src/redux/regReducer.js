@@ -32,7 +32,7 @@ export function register({name, id,pwd,pwdRepeat}){
 	}
 	
 	return dispatch=>
-		axios.post('/register',{name,id,pwd})
+		axios.post('register.json',{name,id,pwd})
 		.then(res=>{
 			if(res.status==200){
 				dispatch(regSuccess({name,id,pwd}))

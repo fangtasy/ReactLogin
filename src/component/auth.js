@@ -6,14 +6,15 @@ class Auth extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			pass:false,
+			id:'',
+			pwd:''
 		}
 	}
 	componentDidMount(){
 	   axios.get('user.json')
       .then(res => {
       	console.log(res);
-      	this.setState({pass: res.data.find(obj=>obj.id==='jx').pwd==='123'})
+      	this.setState({id: '11',pwd:'321'})
       	console.log(this.props)
       });
 	}
@@ -23,7 +24,7 @@ class Auth extends Component{
 			<h1>
 			Login page {this.props.loginStatus.loginReducer.flag}
 			</h1>
-			<button onClick={()=>this.props.login(this.state.pass)}>login true</button>
+			<button onClick={()=>this.props.login(this.state)}>login true</button>
 		</div>)
 	}
 	
